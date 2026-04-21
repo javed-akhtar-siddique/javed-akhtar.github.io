@@ -56,6 +56,15 @@
 
     /* ── HERO ────────────────────────────────── */
     #hero { padding: 88px 24px 76px; border-bottom: 1px solid var(--border); }
+    #hero .inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+    .hero-text { flex: 1; min-width: 0; }
+    .hero-photo { flex-shrink: 0; }
+    .hero-photo img {
+      width: 160px; height: 160px; border-radius: 50%;
+      object-fit: cover; object-position: center top;
+      border: 3px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 11px; font-weight: 700; letter-spacing: 1.4px;
@@ -67,7 +76,7 @@
       letter-spacing: -1.4px; line-height: 1.08; margin-bottom: 18px;
     }
     .hero-headline {
-      font-size: 15px; color: var(--mid); max-width: 580px;
+      font-size: 15px; color: var(--mid); max-width: 520px;
       line-height: 1.7; margin-bottom: 20px;
     }
     .hero-meta {
@@ -222,6 +231,8 @@
 
     /* ── RESPONSIVE ──────────────────────────── */
     @media (max-width: 680px) {
+      #hero .inner { flex-direction: column-reverse; align-items: flex-start; gap: 28px; }
+      .hero-photo img { width: 110px; height: 110px; }
       .metrics-grid { grid-template-columns: repeat(2, 1fr); }
       .tl-item { grid-template-columns: 1fr; gap: 2px; }
       .tl-left { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
@@ -253,6 +264,7 @@
 <!-- ── HERO ─────────────────────────────────────── -->
 <section id="hero">
   <div class="inner">
+    <div class="hero-text">
     <div class="hero-badge">Senior Director · Customer Experience</div>
     <h1>Javed Akhtar</h1>
     <p class="hero-headline">
@@ -280,6 +292,10 @@
       <a href="mailto:javed.akhtar@codingal.com" class="btn btn-primary">Get in touch</a>
       <a href="https://linkedin.com/in/javed-akhtar-53264a16" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
       <span class="open-badge"><span class="open-dot"></span>Open to Work — On-site · Hybrid · Remote</span>
+    </div>
+    </div><!-- end hero-text -->
+    <div class="hero-photo">
+      <img src="photo.jpg" alt="Javed Akhtar" />
     </div>
   </div>
 </section>
