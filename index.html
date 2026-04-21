@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Javed Akhtar — AI-First CX & Revenue Leader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #ffffff;
+      --bg-soft:   #f9f9f7;
+      --bg-card:   #f4f3f0;
+      --border:    #e8e6e1;
+      --accent:    #b8860b;
+      --accent-dk: #9a7009;
+      --accent-lt: #fdf6e3;
+      --text:      #1a1a1a;
+      --mid:       #4a4a4a;
+      --light:     #888880;
+      --max-w:     880px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .nav-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 54px;
+    }
+    .nav-logo { font-weight: 700; font-size: 15px; color: var(--text); letter-spacing: -0.3px; }
+    .nav-logo span { color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 24px; }
+    nav a { text-decoration: none; color: var(--light); font-size: 13px; font-weight: 500; transition: color .18s; }
+    nav a:hover { color: var(--accent); }
+
+    /* ── WRAPPER ─────────────────────────────── */
+    .section { padding: 72px 24px; }
+    .section-alt { background: var(--bg-soft); }
+    .inner { max-width: var(--max-w); margin: 0 auto; }
+
+    /* ── HERO ────────────────────────────────── */
+    #hero { padding: 88px 24px 76px; border-bottom: 1px solid var(--border); }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+    }
+    .hero-badge::before { content: ''; display: block; width: 22px; height: 2px; background: var(--accent); }
+    h1 {
+      font-size: clamp(34px, 5.5vw, 52px); font-weight: 700;
+      letter-spacing: -1.4px; line-height: 1.08; margin-bottom: 18px;
+    }
+    .hero-headline {
+      font-size: 15px; color: var(--mid); max-width: 580px;
+      line-height: 1.7; margin-bottom: 20px;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      font-size: 13px; color: var(--light); margin-bottom: 24px; align-items: center;
+    }
+    .hero-meta-item { display: flex; align-items: center; gap: 6px; }
+    .hero-meta-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 28px; }
+    .tag {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 4px 13px;
+      font-size: 12px; font-weight: 500; color: var(--mid);
+    }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px; border-radius: 7px;
+      font-size: 13px; font-weight: 600; text-decoration: none; transition: all .18s; cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #fff; border: 1.5px solid var(--accent); }
+    .btn-primary:hover { background: var(--accent-dk); border-color: var(--accent-dk); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .open-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #eefaf2; border: 1px solid #b4dfc4; border-radius: 20px;
+      padding: 5px 14px; font-size: 12px; font-weight: 600; color: #2a7a4b;
+    }
+    .open-dot { width: 7px; height: 7px; border-radius: 50%; background: #2a7a4b; }
+
+    /* ── SECTION HEADING ─────────────────────── */
+    .sec-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: 12px; margin-bottom: 36px;
+    }
+    .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 200px; }
+
+    /* ── METRICS ─────────────────────────────── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+    }
+    .metric { background: var(--bg); padding: 22px 18px; }
+    .metric-val {
+      font-size: 22px; font-weight: 700; color: var(--text);
+      letter-spacing: -0.6px; line-height: 1.1; margin-bottom: 5px;
+    }
+    .metric-val em { color: var(--accent); font-style: normal; }
+    .metric-lbl { font-size: 12px; color: var(--light); font-weight: 500; line-height: 1.4; }
+
+    /* ── ABOUT ───────────────────────────────── */
+    .about-body { font-size: 15.5px; color: var(--mid); line-height: 1.85; max-width: 700px; }
+    .about-body p + p { margin-top: 14px; }
+    .about-block { margin-top: 28px; }
+    .about-block-title {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+    }
+    .about-list { list-style: none; display: flex; flex-direction: column; gap: 7px; padding: 0; }
+    .about-list li {
+      font-size: 15px; color: var(--mid); padding-left: 16px; position: relative; line-height: 1.65;
+    }
+    .about-list li::before {
+      content: '▪'; position: absolute; left: 0;
+      color: var(--accent); font-size: 9px; top: 5px;
+    }
+
+    /* ── EXPERIENCE ──────────────────────────── */
+    .timeline { display: flex; flex-direction: column; }
+    .tl-item {
+      display: grid; grid-template-columns: 148px 1fr;
+      gap: 0 28px; padding: 30px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-left { padding-top: 2px; }
+    .tl-period { font-size: 12px; color: var(--light); font-weight: 500; line-height: 1.55; }
+    .tl-duration { font-size: 11px; color: #b0aca4; margin-top: 3px; }
+    .tl-badge {
+      display: inline-block; margin-top: 8px;
+      background: var(--accent-lt); color: var(--accent);
+      font-size: 10px; font-weight: 700; letter-spacing: 0.4px;
+      padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+    }
+    .tl-title { font-size: 15.5px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .tl-company {
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      text-decoration: underline; text-underline-offset: 3px; margin-bottom: 4px;
+    }
+    .tl-company .tl-loc { font-weight: 400; color: var(--light); text-decoration: none; }
+    .tl-type { font-size: 12px; color: var(--light); margin-bottom: 12px; }
+    .tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .tl-bullets li {
+      font-size: 13.5px; color: var(--mid); padding-left: 15px;
+      position: relative; line-height: 1.65;
+    }
+    .tl-bullets li::before {
+      content: '▪'; position: absolute; left: 0;
+      color: var(--accent); font-size: 9px; top: 5px;
+    }
+
+    /* ── SKILLS ──────────────────────────────── */
+    .skills-block { display: flex; flex-direction: column; gap: 18px; }
+    .skill-row { display: grid; grid-template-columns: 148px 1fr; gap: 12px; align-items: start; }
+    .skill-cat { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.7px; padding-top: 3px; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pill {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 4px; padding: 4px 11px;
+      font-size: 12px; color: var(--mid); font-weight: 500;
+    }
+
+    /* ── EDUCATION ───────────────────────────── */
+    .edu-card {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 16px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 24px 28px;
+    }
+    .edu-degree { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .edu-school { font-size: 13px; font-weight: 600; color: var(--accent); }
+    .edu-detail { font-size: 12px; color: var(--light); margin-top: 4px; }
+    .edu-right { text-align: right; }
+    .edu-lang { font-size: 12px; color: var(--light); }
+
+    /* ── CONTACT BANNER ──────────────────────── */
+    .contact-wrap { padding: 64px 24px; }
+    .contact-card {
+      max-width: var(--max-w); margin: 0 auto;
+      background: var(--text); border-radius: 14px;
+      padding: 52px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 28px;
+    }
+    .contact-left h2 { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.6px; margin-bottom: 8px; }
+    .contact-left p { color: #999; font-size: 14px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: #ccc; font-size: 13px; transition: color .18s;
+    }
+    .contact-link:hover { color: #fff; }
+    .c-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer { text-align: center; padding: 22px 24px; font-size: 12px; color: var(--light); border-top: 1px solid var(--border); }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 680px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .tl-item { grid-template-columns: 1fr; gap: 2px; }
+      .tl-left { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+      .tl-duration { margin-top: 0; }
+      .tl-badge { margin-top: 0; }
+      .skill-row { grid-template-columns: 1fr; gap: 6px; }
+      .contact-card { padding: 36px 28px; }
+      .contact-links { align-items: flex-start; }
+      .edu-right { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Javed <span>Akhtar</span></span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#metrics">Impact</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────── -->
+<section id="hero">
+  <div class="inner">
+    <div class="hero-badge">Senior Director · Customer Experience</div>
+    <h1>Javed Akhtar</h1>
+    <p class="hero-headline">
+      AI-First CX &amp; Revenue Leader building scalable customer operations with AI, automation &amp; analytics — across EdTech, SaaS, and PropTech.
+    </p>
+    <div class="hero-meta">
+      <span class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Bengaluru, Karnataka, India
+      </span>
+      <span class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        500+ Connections · 1,493 Followers
+      </span>
+    </div>
+    <div class="hero-tags">
+      <span class="tag">EdTech</span>
+      <span class="tag">SaaS</span>
+      <span class="tag">PropTech</span>
+      <span class="tag">13+ Years Experience</span>
+      <span class="tag">AI-Powered CX</span>
+      <span class="tag">Team of 20+</span>
+    </div>
+    <div class="hero-cta">
+      <a href="mailto:javed.akhtar@codingal.com" class="btn btn-primary">Get in touch</a>
+      <a href="https://linkedin.com/in/javed-akhtar-53264a16" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+      <span class="open-badge"><span class="open-dot"></span>Open to Work — On-site · Hybrid · Remote</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── METRICS ───────────────────────────────────── -->
+<section id="metrics" class="section section-alt">
+  <div class="inner">
+    <div class="sec-label">Impact at a Glance</div>
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-val">16% <em>→ 9%</em></div>
+        <div class="metric-lbl">Monthly Churn (44% improvement)</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">44% <em>→ 56%</em></div>
+        <div class="metric-lbl">Trial-to-Completion Rate</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">15% <em>→ 25%</em></div>
+        <div class="metric-lbl">Course Completion Rate</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val"><em>+20%</em></div>
+        <div class="metric-lbl">Signup-to-Trial Conversion</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val"><em>90%+</em></div>
+        <div class="metric-lbl">CSAT Score on Chat</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val"><em>76%</em></div>
+        <div class="metric-lbl">CSAT Score on Email</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val"><em>2 min</em></div>
+        <div class="metric-lbl">First Response Time (Chat)</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val"><em>&lt;48 hrs</em></div>
+        <div class="metric-lbl">Average Resolution Time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────── -->
+<section id="about" class="section">
+  <div class="inner">
+    <div class="sec-label">About</div>
+    <div class="about-body">
+      <p>
+        I am an AI-first Customer Experience &amp; Revenue Leader with 13+ years of experience building scalable, data-driven customer operations across EdTech, SaaS, and PropTech.
+      </p>
+      <p>
+        My belief is simple: <strong>Exceptional customer experience lives at the intersection of AI, intelligent process design, and human insight.</strong>
+      </p>
+      <p>
+        Over the years, I have led end-to-end customer journeys — from pre-sales and onboarding to retention and expansion — using AI-powered tools, automation, and analytics to drive measurable business outcomes.
+      </p>
+
+      <div class="about-block">
+        <div class="about-block-title">What I Specialize In</div>
+        <ul class="about-list">
+          <li>Designing AI-first CX frameworks and retention playbooks</li>
+          <li>Implementing CRM automation, chat ops, and AI-powered workflows</li>
+          <li>Building and leading high-performance CX and retention teams</li>
+          <li>Translating customer data into product feedback and revenue strategy</li>
+          <li>SOP creation, knowledge base design, and process standardization</li>
+          <li>Escalation management and cross-functional stakeholder alignment</li>
+        </ul>
+      </div>
+
+      <div class="about-block">
+        <div class="about-block-title">My Focus Today</div>
+        <p>
+          Building AI-led customer experience ecosystems that reduce churn, improve lifetime value, and turn every customer touchpoint into a growth opportunity. Open to connecting with CX leaders, EdTech operators, and anyone passionate about using AI to redefine customer relationships.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ────────────────────────────────── -->
+<section id="experience" class="section section-alt">
+  <div class="inner">
+    <div class="sec-label">Experience</div>
+    <div class="timeline">
+
+      <!-- Codingal Senior Director -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-period">Oct 2024<br>– Present</div>
+          <div class="tl-duration">1 yr 7 mos</div>
+          <div class="tl-badge">Current</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-title">Senior Director of Customer Service</div>
+          <div class="tl-company">Codingal (EdTech · YC W21) <span class="tl-loc">— Bengaluru</span></div>
+          <div class="tl-type">Full-time · On-site</div>
+          <ul class="tl-bullets">
+            <li>Leading end-to-end customer experience strategy and operations for one of India's fastest-growing EdTech platforms; managing a team of 20+ across support, retention, and success functions.</li>
+            <li>Reduced monthly churn from 16% to 9% (44% drop) through AI-powered retention workflows and proactive customer intervention frameworks.</li>
+            <li>Improved trial-to-completion rate from 44% to 56% and course completion rate from 15% to 25% by redesigning the post-signup customer journey.</li>
+            <li>Increased signup-to-trial conversion by 20% through tighter pre-sales CX alignment and targeted onboarding improvements.</li>
+            <li>Achieved 90%+ CSAT on chat and 76% on email across 1,200+ daily chats and 200+ daily emails; maintained FRT under 2 min on chat and 60 min on email; average resolution under 48 hours.</li>
+            <li>Built AI-enabled workflows across CRM, support, and communication platforms — cutting manual effort and improving response consistency.</li>
+            <li>Designed and implemented company-wide SOPs, escalation frameworks, and knowledge base to standardise service delivery.</li>
+            <li>Partnered with product and engineering teams to surface customer insights and directly influence roadmap decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Codingal Director -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-period">Oct 2023<br>– Oct 2024</div>
+          <div class="tl-duration">1 yr 1 mo</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-title">Director of Customer Service</div>
+          <div class="tl-company">Codingal (EdTech · YC W21) <span class="tl-loc">— Bengaluru</span></div>
+          <div class="tl-type">Full-time · On-site</div>
+          <ul class="tl-bullets">
+            <li>Built the CX function from scratch — team structure, CRM setup, ticketing systems, SLA frameworks, and first-ever CSAT measurement across all channels.</li>
+            <li>Designed churn-signal playbooks and retention workflows; aligned CX cross-functionally with sales, product, and teacher operations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CasaOne -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-period">Sep 2018<br>– Oct 2023</div>
+          <div class="tl-duration">5 yrs 2 mos</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-title">Customer Success Manager</div>
+          <div class="tl-company">CasaOne (PropTech · Furniture-as-a-Service) <span class="tl-loc">— Bengaluru</span></div>
+          <div class="tl-type">Full-time</div>
+          <ul class="tl-bullets">
+            <li>Joined as the first Customer Success hire when CasaOne was an 8-person organisation; built the entire CS team, culture, processes, KPIs, and toolstack from zero.</li>
+            <li>Institutionalised a culture of customer obsession — defined hiring criteria, onboarding frameworks, and performance coaching programs for the growing team.</li>
+            <li>Drove customer retention through NPS programs, customer interviews, surveys, and proactive churn reduction; worked backwards from customer pain points to solve systemic issues.</li>
+            <li>Reduced re-delivery runs through strategic pre-delivery profiling — gathering details on elevator dimensions, doorway size, and room measurements to prevent failed furniture installations.</li>
+            <li>Monitored full metrics stack: NPS, CSAT, FCR, missed call rate, call wait time, and ticket/chat resolution time.</li>
+            <li>Administered and trained teams on Zendesk, Slack, Monday.com, DocuSign, Chatbot, Acuity, Textline, Livechat, and DispatchTrack; upskilled team through Canity training platform.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bicycle AI -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-period">Feb 2018<br>– Sep 2018</div>
+          <div class="tl-duration">8 mos</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-title">Customer Experience Manager</div>
+          <div class="tl-company">Bicycle AI (Tech Startup) <span class="tl-loc">— Bengaluru</span></div>
+          <ul class="tl-bullets">
+            <li>Streamlined and automated CX processes resulting in a 30% reduction in customer complaints, reducing cost on additional manpower.</li>
+            <li>Managed, hired, and led the customer experience team; drove strategic automation initiatives on a regular basis.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Furlenco -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-period">Sep 2016<br>– Feb 2018</div>
+          <div class="tl-duration">1 yr 6 mos</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-title">Customer Experience Manager</div>
+          <div class="tl-company">Furlenco (FurnitureTech) <span class="tl-loc">— Bengaluru</span></div>
+          <ul class="tl-bullets">
+            <li>Drove 20% increase in customer retention by implementing interaction improvements and loyalty programs.</li>
+            <li>Achieved 10% boost in upsell business by implementing customer loyalty programs.</li>
+            <li>Identified key service improvement areas — delayed delivery, damaged furniture pickups — and implemented policies and SOPs to improve overall customer experience.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Earlier Roles -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-period">Earlier<br>Career</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-title" style="font-size:14px; margin-bottom:12px;">Previous Roles</div>
+          <ul class="tl-bullets">
+            <li><strong>Technical Support Engineer · Convergys</strong> (Jan–Jul 2016, Greater Delhi) — Resolved customer issues within SLA; turned complaints into opportunities; trained new joiners.</li>
+            <li><strong>Operations Executive · Nelito Infosystems</strong> (Jan–Dec 2015, Greater Delhi) — Implemented e-commerce software for Ministry of Commerce (Govt. of India); trained government employees; assessed employee satisfaction.</li>
+            <li><strong>Financial Consultant (P/T) · ICICI Prudential Life Insurance</strong> (Aug 2006–Jan 2008, Jamshedpur) — Acquired and managed client portfolios; conducted financial needs assessments; determined client coverage and long-term goals.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ─────────────────────────────────────── -->
+<section id="skills" class="section">
+  <div class="inner">
+    <div class="sec-label">Core Competencies</div>
+    <div class="skills-block">
+      <div class="skill-row">
+        <div class="skill-cat">CX & Retention</div>
+        <div class="skill-pills">
+          <span class="pill">Customer Experience</span>
+          <span class="pill">Customer Success</span>
+          <span class="pill">Churn Reduction</span>
+          <span class="pill">Customer Retention</span>
+          <span class="pill">NPS & CSAT</span>
+          <span class="pill">Customer Journey Mapping</span>
+          <span class="pill">Customer Onboarding</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Operations</div>
+        <div class="skill-pills">
+          <span class="pill">SLA Management</span>
+          <span class="pill">Escalation Management</span>
+          <span class="pill">Process Improvement</span>
+          <span class="pill">SOPs</span>
+          <span class="pill">Knowledge Management</span>
+          <span class="pill">Revenue Operations</span>
+          <span class="pill">Support Operations</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Leadership</div>
+        <div class="skill-pills">
+          <span class="pill">Team Building (20+ FTE)</span>
+          <span class="pill">People Management</span>
+          <span class="pill">Hiring & Coaching</span>
+          <span class="pill">Cross-functional Collaboration</span>
+          <span class="pill">Strategic Planning</span>
+          <span class="pill">Account Management</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Technology</div>
+        <div class="skill-pills">
+          <span class="pill">AI-powered Workflows</span>
+          <span class="pill">CRM</span>
+          <span class="pill">Data Analytics</span>
+          <span class="pill">Workflow Automation</span>
+          <span class="pill">Zendesk</span>
+          <span class="pill">Monday.com</span>
+          <span class="pill">Slack</span>
+          <span class="pill">DocuSign</span>
+          <span class="pill">Livechat</span>
+          <span class="pill">DispatchTrack</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-pills">
+          <span class="pill">English</span>
+          <span class="pill">Hindi</span>
+          <span class="pill">Oriya</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ──────────────────────────────────── -->
+<section id="education" class="section section-alt">
+  <div class="inner">
+    <div class="sec-label">Education</div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">B.Tech</div>
+        <div class="edu-school">Gandhi Engineering College</div>
+        <div class="edu-detail">Hardware &amp; Networking</div>
+      </div>
+      <div class="edu-right">
+        <div class="edu-lang">Hindi · Oriya · English</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────── -->
+<section class="contact-wrap">
+  <div class="contact-card">
+    <div class="contact-left">
+      <h2>Let's connect</h2>
+      <p>Open to senior CX, Revenue Ops &amp; leadership opportunities.<br>On-site · Hybrid · Remote — Bengaluru and beyond.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:javed.akhtar@codingal.com" class="contact-link">
+        <span class="c-dot"></span>javed.akhtar@codingal.com
+      </a>
+      <a href="https://linkedin.com/in/javed-akhtar-53264a16" target="_blank" class="contact-link">
+        <span class="c-dot"></span>linkedin.com/in/javed-akhtar-53264a16
+      </a>
+      <span class="contact-link">
+        <span class="c-dot"></span>Bengaluru, Karnataka, India
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer>
+  © 2026 Javed Akhtar &nbsp;·&nbsp; <a href="https://linkedin.com/in/javed-akhtar-53264a16" target="_blank">LinkedIn</a> &nbsp;·&nbsp; Built with GitHub Pages
+</footer>
+
+</body>
+</html>
