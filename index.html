@@ -193,6 +193,26 @@
       font-size: 12px; color: var(--mid); font-weight: 500;
     }
 
+    /* ── PROJECTS ────────── */
+    .proj-intro { font-size: 14.5px; color: var(--mid); line-height: 1.8; max-width: 700px; margin-bottom: 26px; }
+    .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .proj-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 20px 18px;
+      display: flex; flex-direction: column; transition: border-color .18s;
+    }
+    .proj-card:hover { border-color: var(--accent); }
+    .proj-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
+    .proj-title { font-size: 14.5px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; line-height: 1.35; }
+    .proj-year { font-size: 11px; color: var(--light); flex-shrink: 0; font-weight: 500; }
+    .proj-desc { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 13px; flex: 1; }
+    .proj-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+    .proj-stack span {
+      font-size: 10.5px; color: var(--light); background: var(--bg);
+      border: 1px solid var(--border); border-radius: 3px;
+      padding: 3px 7px; letter-spacing: 0.2px; font-weight: 500;
+    }
+
     /* ── EDUCATION ───────────────────────────── */
     .edu-card {
       display: flex; justify-content: space-between; align-items: flex-start;
@@ -239,6 +259,7 @@
       .tl-duration { margin-top: 0; }
       .tl-badge { margin-top: 0; }
       .skill-row { grid-template-columns: 1fr; gap: 6px; }
+      .proj-grid { grid-template-columns: 1fr; }
       .contact-card { padding: 36px 28px; }
       .contact-links { align-items: flex-start; }
       .edu-right { text-align: left; }
@@ -255,6 +276,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#metrics">Impact</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -286,6 +308,7 @@
       <span class="tag">PropTech</span>
       <span class="tag">13+ Years Experience</span>
       <span class="tag">AI-Powered CX</span>
+      <span class="tag">AI Agents in Production</span>
       <span class="tag">Team of 20+</span>
     </div>
     <div class="hero-cta">
@@ -388,7 +411,7 @@
       <div class="tl-item">
         <div class="tl-left">
           <div class="tl-period">Oct 2024<br>– Present</div>
-          <div class="tl-duration">1 yr 7 mos</div>
+          <div class="tl-duration">1 yr 11 mos</div>
           <div class="tl-badge">Current</div>
         </div>
         <div class="tl-right">
@@ -403,6 +426,8 @@
             <li>Achieved 90%+ CSAT on chat and 76% on email across 1,200+ daily chats and 200+ daily emails; maintained FRT under 2 min on chat and 60 min on email; average resolution under 48 hours.</li>
             <li>Built AI-enabled workflows across CRM, support, and communication platforms — cutting manual effort and improving response consistency.</li>
             <li>Designed and implemented company-wide SOPs, escalation frameworks, and knowledge base to standardise service delivery.</li>
+            <li>Built and shipped the support data platform behind the function — an automated pipeline syncing every ticket into a Postgres warehouse that now feeds every CS dashboard, AI agent, and daily report.</li>
+            <li>Deployed a live multi-agent AI layer on top of it (trial, paid-course Q&amp;A, and teacher payout agents) with automatic human escalation — deflecting routine volume while keeping a person on anything ambiguous.</li>
             <li>Partnered with product and engineering teams to surface customer insights and directly influence roadmap decisions.</li>
           </ul>
         </div>
@@ -498,8 +523,135 @@
   </div>
 </section>
 
+<!-- ── PROJECTS ────────────────────────────── -->
+<section id="projects" class="section">
+  <div class="inner">
+    <div class="sec-label">Selected Projects</div>
+    <p class="proj-intro">
+      Internal AI, data, and automation systems I scoped, built, and shipped through 2026 to run customer
+      service at scale — from the warehouse everything reads from, to the agents and dashboards on top of it.
+    </p>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-head">
+          <div class="proj-title">Support Data Platform</div>
+          <div class="proj-year">2026</div>
+        </div>
+        <div class="proj-desc">The system of record for customer service. A Python + Cloudflare Worker pipeline syncs every Atlas conversation into a Neon Postgres warehouse on a 2-hourly schedule — the single source every dashboard, agent, and report reads from.</div>
+        <div class="proj-stack">
+          <span>Python</span>
+          <span>Cloudflare Workers</span>
+          <span>Neon Postgres</span>
+          <span>GitHub Actions</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <div class="proj-title">Multi-Agent AI Support Layer</div>
+          <div class="proj-year">2026</div>
+        </div>
+        <div class="proj-desc">Three live AI agents running on the support warehouse — trial enquiries, paid-course Q&amp;A, and teacher payout handling — each grounded in a curated knowledge base and wired to stand down permanently the moment a human takes over the conversation.</div>
+        <div class="proj-stack">
+          <span>Claude</span>
+          <span>Cloudflare Workers</span>
+          <span>Postgres</span>
+          <span>Contract tests</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <div class="proj-title">CSAT / DSAT Segmentation Dashboard</div>
+          <div class="proj-year">2026</div>
+        </div>
+        <div class="proj-desc">Splits satisfaction three ways — teacher vs. paid vs. trial — then by channel, handler, agent, and issue sub-type. A daily fact cube is embedded in one self-contained page, so every period filter recomputes in the browser with no server.</div>
+        <div class="proj-stack">
+          <span>SQL</span>
+          <span>Node</span>
+          <span>Data modelling</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <div class="proj-title">DSA Partner Performance Dashboard</div>
+          <div class="proj-year">2026</div>
+        </div>
+        <div class="proj-desc">Month-to-date versus target for the partner acquisition channel, with LTV/CAC and contribution-margin views that spend decisions run off. Three surfaces — a shareable report, an SSO-gated dashboard, and a daily Slack post — all refreshed from one build.</div>
+        <div class="proj-stack">
+          <span>Redash SQL</span>
+          <span>Cloudflare Workers</span>
+          <span>KV</span>
+          <span>Node</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <div class="proj-title">DSA Scheduling AI Agent</div>
+          <div class="proj-year">2026</div>
+        </div>
+        <div class="proj-desc">A live agent that polls partner booking sheets every ten minutes, ingests eligible leads into its own store, and drives outbound trial scheduling. A hard-coded write policy scopes it to agent-owned columns, and 60/60 tests gate every deploy.</div>
+        <div class="proj-stack">
+          <span>Cloudflare Workers</span>
+          <span>D1</span>
+          <span>Google Sheets API</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <div class="proj-title">Daily CS Quality Audit Agent</div>
+          <div class="proj-year">2026</div>
+        </div>
+        <div class="proj-desc">Audits the previous day's tickets across four tracks — email, paid Slack, teacher chat, and live chat — scoring handling quality with Claude and publishing four Excel reports plus a Slack summary before the team starts its shift.</div>
+        <div class="proj-stack">
+          <span>Python</span>
+          <span>Atlas API</span>
+          <span>Claude</span>
+          <span>Excel</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <div class="proj-title">Lead Quality Feedback Loop</div>
+          <div class="proj-year">2026</div>
+        </div>
+        <div class="proj-desc">A live agent that closes the loop between sales and marketing: it asks whoever claimed a lead to rate it 1–5 in Slack, then logs the score against its source. One parser covers three subject feeds, verified against 282 real alerts.</div>
+        <div class="proj-stack">
+          <span>Cloudflare Workers</span>
+          <span>D1</span>
+          <span>Slack API</span>
+          <span>Sheets</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <div class="proj-title">Ticket Taxonomy &amp; Routing Redesign</div>
+          <div class="proj-year">2026</div>
+        </div>
+        <div class="proj-desc">Rebuilt the issue-category and priority taxonomy behind the helpdesk and paired it with a classify-first routing protocol, so tickets reach the right queue on arrival instead of being reassigned two hops later.</div>
+        <div class="proj-stack">
+          <span>Taxonomy design</span>
+          <span>Classifier service</span>
+          <span>Routing playbooks</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-head">
+          <div class="proj-title">Incentive Automation Engine</div>
+          <div class="proj-year">2026</div>
+        </div>
+        <div class="proj-desc">Turns the monthly payout cycle into a single run: pulls performance data from Airtable and Redash, applies the tiered retention and renewal formulas, and emits the payout workbook plus a Slack summary for sign-off.</div>
+        <div class="proj-stack">
+          <span>Airtable</span>
+          <span>Redash</span>
+          <span>Python</span>
+          <span>Slack API</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── SKILLS ─────────────────────────────────────── -->
-<section id="skills" class="section">
+<section id="skills" class="section section-alt">
   <div class="inner">
     <div class="sec-label">Core Competencies</div>
     <div class="skills-block">
@@ -541,16 +693,22 @@
       <div class="skill-row">
         <div class="skill-cat">Technology</div>
         <div class="skill-pills">
-          <span class="pill">AI-powered Workflows</span>
-          <span class="pill">CRM</span>
-          <span class="pill">Data Analytics</span>
+          <span class="pill">AI Agents (Claude)</span>
+          <span class="pill">Prompt &amp; Context Engineering</span>
+          <span class="pill">RAG &amp; Knowledge Bases</span>
+          <span class="pill">Python</span>
+          <span class="pill">SQL</span>
+          <span class="pill">Postgres / Neon</span>
+          <span class="pill">Cloudflare Workers</span>
+          <span class="pill">ETL &amp; Data Pipelines</span>
+          <span class="pill">Redash</span>
+          <span class="pill">Dashboard Design</span>
           <span class="pill">Workflow Automation</span>
+          <span class="pill">Slack API</span>
+          <span class="pill">Airtable</span>
+          <span class="pill">CRM</span>
           <span class="pill">Zendesk</span>
           <span class="pill">Monday.com</span>
-          <span class="pill">Slack</span>
-          <span class="pill">DocuSign</span>
-          <span class="pill">Livechat</span>
-          <span class="pill">DispatchTrack</span>
         </div>
       </div>
       <div class="skill-row">
@@ -566,7 +724,7 @@
 </section>
 
 <!-- ── EDUCATION ──────────────────────────────────── -->
-<section id="education" class="section section-alt">
+<section id="education" class="section">
   <div class="inner">
     <div class="sec-label">Education</div>
     <div class="edu-card">
