@@ -142,10 +142,10 @@
       gap: 56px; align-items: start;
     }
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 9px;
-      font-family: var(--mono); font-size: 11.5px; font-weight: 500;
-      color: var(--accent); letter-spacing: 0.8px; text-transform: uppercase;
-      margin-bottom: 22px;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 15px; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.6px; text-transform: uppercase;
+      margin-bottom: 24px;
     }
     .eyebrow-dot {
       width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
@@ -325,6 +325,39 @@
       border-radius: 4px; padding: 3px 7px;
     }
 
+    /* Projects sits in its own accent band so it reads as the centrepiece. */
+    #projects {
+      position: relative; overflow: hidden;
+      background: var(--accent-wash);
+      border-top: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+    }
+    #projects::before {
+      content: ''; position: absolute; top: -240px; left: 50%; transform: translateX(-50%);
+      width: 1040px; height: 480px; pointer-events: none;
+      background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
+    }
+    #projects .inner { position: relative; }
+    .proj-headline { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+    .proj-headline h2 {
+      font-size: clamp(23px, 3vw, 32px); font-weight: 800; letter-spacing: -1.1px;
+      color: var(--text); line-height: 1.14;
+    }
+    .prod-badge {
+      display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+      font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.8px;
+      color: var(--accent); background: color-mix(in srgb, var(--accent) 13%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
+      border-radius: 20px; padding: 5px 12px;
+    }
+    .prod-badge::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-wash); animation: pulse 2.6s ease-in-out infinite;
+    }
+    /* light mode's accent is too pale against the badge fill — go a shade deeper */
+    :root[data-theme="light"] .prod-badge { color: var(--accent-dim); }
+    #projects .proj-card { border-top: 2px solid color-mix(in srgb, var(--accent) 55%, transparent); }
+
     /* ══ SKILLS ══ */
     .skills-block { display: flex; flex-direction: column; gap: 22px; }
     .skill-row { display: grid; grid-template-columns: 168px 1fr; gap: 20px; align-items: start; }
@@ -400,6 +433,7 @@
       .hero-grid { grid-template-columns: 1fr; gap: 30px; }
       .hero-photo { order: -1; }
       .hero-photo img { width: 132px; }
+      .eyebrow { font-size: 13px; letter-spacing: 0.4px; }
       h1 { letter-spacing: -1.6px; }
       .stat-strip { grid-template-columns: 1fr; }
       .stat { border-right: none; border-bottom: 1px solid var(--border); }
@@ -427,8 +461,8 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#impact">Impact</a></li>
-      <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -596,11 +630,98 @@
   </div>
 </section>
 
-<!-- ══ EXPERIENCE ══ -->
-<section id="experience" class="section section-soft">
+<!-- ══ PROJECTS ══ -->
+<section id="projects" class="section">
   <div class="inner">
     <div class="sec-head">
       <span class="sec-num">03</span>
+      <span class="sec-label">Work · Production Systems</span>
+      <span class="sec-rule"></span>
+    </div>
+    <div class="proj-headline">
+      <h2>Systems I built and shipped at Codingal</h2>
+      <span class="prod-badge">Live in production</span>
+    </div>
+    <p class="proj-intro">
+      These are production systems running the business — not side projects or coursework. I scoped, built,
+      and shipped each one in 2026, and they now run day-to-day customer service for a 20+ person team
+      handling 1,200+ chats and 200+ emails a day: the data warehouse everything reads from, the AI agents
+      that work tickets, and the dashboards leadership makes spend decisions on.
+    </p>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-idx">01</div>
+        <div class="proj-title">Support Data Platform</div>
+        <div class="proj-desc">The system of record for customer service. A Python + Cloudflare Worker pipeline syncs every Atlas conversation into a Neon Postgres warehouse on a 2-hourly schedule — the single source every dashboard, agent, and report reads from.</div>
+        <div class="proj-stack"><span>Python</span><span>Cloudflare Workers</span><span>Neon Postgres</span><span>GitHub Actions</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-idx">02</div>
+        <div class="proj-title">Multi-Agent AI Support Layer</div>
+        <div class="proj-desc">Three live AI agents running on the support warehouse — trial enquiries, paid-course Q&amp;A, and teacher payout handling — each grounded in a curated knowledge base and wired to stand down permanently the moment a human takes over.</div>
+        <div class="proj-stack"><span>Claude</span><span>Cloudflare Workers</span><span>Postgres</span><span>Contract tests</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-idx">03</div>
+        <div class="proj-title">CSAT / DSAT Segmentation Dashboard</div>
+        <div class="proj-desc">Splits satisfaction three ways — teacher vs. paid vs. trial — then by channel, handler, agent, and issue sub-type. A daily fact cube is embedded in one self-contained page, so every period filter recomputes in the browser with no server.</div>
+        <div class="proj-stack"><span>SQL</span><span>Node</span><span>Data modelling</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-idx">04</div>
+        <div class="proj-title">DSA Partner Performance Dashboard</div>
+        <div class="proj-desc">Month-to-date versus target for the partner acquisition channel, with LTV/CAC and contribution-margin views that spend decisions run off. Three surfaces — a shareable report, an SSO-gated dashboard, and a daily Slack post — all refreshed from one build.</div>
+        <div class="proj-stack"><span>Redash SQL</span><span>Cloudflare Workers</span><span>KV</span><span>Node</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-idx">05</div>
+        <div class="proj-title">DSA Scheduling AI Agent</div>
+        <div class="proj-desc">A live agent that polls partner booking sheets every ten minutes, ingests eligible leads into its own store, and drives outbound trial scheduling. A hard-coded write policy scopes it to agent-owned columns, and 60/60 tests gate every deploy.</div>
+        <div class="proj-stack"><span>Cloudflare Workers</span><span>D1</span><span>Google Sheets API</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-idx">06</div>
+        <div class="proj-title">Daily CS Quality Audit Agent</div>
+        <div class="proj-desc">Audits the previous day's tickets across four tracks — email, paid Slack, teacher chat, and live chat — scoring handling quality with Claude and publishing four Excel reports plus a Slack summary before the team starts its shift.</div>
+        <div class="proj-stack"><span>Python</span><span>Atlas API</span><span>Claude</span><span>Excel</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-idx">07</div>
+        <div class="proj-title">Lead Quality Feedback Loop</div>
+        <div class="proj-desc">A live agent that closes the loop between sales and marketing: it asks whoever claimed a lead to rate it 1–5 in Slack, then logs the score against its source. One parser covers three subject feeds, verified against 282 real alerts.</div>
+        <div class="proj-stack"><span>Cloudflare Workers</span><span>D1</span><span>Slack API</span><span>Sheets</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-idx">08</div>
+        <div class="proj-title">Ticket Taxonomy &amp; Routing Redesign</div>
+        <div class="proj-desc">Rebuilt the issue-category and priority taxonomy behind the helpdesk and paired it with a classify-first routing protocol, so tickets reach the right queue on arrival instead of being reassigned two hops later.</div>
+        <div class="proj-stack"><span>Taxonomy design</span><span>Classifier service</span><span>Routing playbooks</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-idx">09</div>
+        <div class="proj-title">Incentive Automation Engine</div>
+        <div class="proj-desc">Turns the monthly payout cycle into a single run: pulls performance data from Airtable and Redash, applies the tiered retention and renewal formulas, and emits the payout workbook plus a Slack summary for sign-off.</div>
+        <div class="proj-stack"><span>Airtable</span><span>Redash</span><span>Python</span><span>Slack API</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience" class="section">
+  <div class="inner">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
       <span class="sec-label">Experience</span>
       <span class="sec-rule"></span>
     </div>
@@ -710,87 +831,6 @@
             <li><strong>Financial Consultant (P/T) · ICICI Prudential Life Insurance</strong> (Aug 2006–Jan 2008, Jamshedpur) — Acquired and managed client portfolios; conducted financial needs assessments; determined client coverage and long-term goals.</li>
           </ul>
         </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══ PROJECTS ══ -->
-<section id="projects" class="section">
-  <div class="inner">
-    <div class="sec-head">
-      <span class="sec-num">04</span>
-      <span class="sec-label">Selected Projects</span>
-      <span class="sec-rule"></span>
-    </div>
-    <p class="proj-intro">
-      Internal AI, data, and automation systems I scoped, built, and shipped through 2026 to run customer
-      service at scale — from the warehouse everything reads from, to the agents and dashboards on top of it.
-    </p>
-    <div class="proj-grid">
-
-      <div class="proj-card">
-        <div class="proj-idx">01</div>
-        <div class="proj-title">Support Data Platform</div>
-        <div class="proj-desc">The system of record for customer service. A Python + Cloudflare Worker pipeline syncs every Atlas conversation into a Neon Postgres warehouse on a 2-hourly schedule — the single source every dashboard, agent, and report reads from.</div>
-        <div class="proj-stack"><span>Python</span><span>Cloudflare Workers</span><span>Neon Postgres</span><span>GitHub Actions</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-idx">02</div>
-        <div class="proj-title">Multi-Agent AI Support Layer</div>
-        <div class="proj-desc">Three live AI agents running on the support warehouse — trial enquiries, paid-course Q&amp;A, and teacher payout handling — each grounded in a curated knowledge base and wired to stand down permanently the moment a human takes over.</div>
-        <div class="proj-stack"><span>Claude</span><span>Cloudflare Workers</span><span>Postgres</span><span>Contract tests</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-idx">03</div>
-        <div class="proj-title">CSAT / DSAT Segmentation Dashboard</div>
-        <div class="proj-desc">Splits satisfaction three ways — teacher vs. paid vs. trial — then by channel, handler, agent, and issue sub-type. A daily fact cube is embedded in one self-contained page, so every period filter recomputes in the browser with no server.</div>
-        <div class="proj-stack"><span>SQL</span><span>Node</span><span>Data modelling</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-idx">04</div>
-        <div class="proj-title">DSA Partner Performance Dashboard</div>
-        <div class="proj-desc">Month-to-date versus target for the partner acquisition channel, with LTV/CAC and contribution-margin views that spend decisions run off. Three surfaces — a shareable report, an SSO-gated dashboard, and a daily Slack post — all refreshed from one build.</div>
-        <div class="proj-stack"><span>Redash SQL</span><span>Cloudflare Workers</span><span>KV</span><span>Node</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-idx">05</div>
-        <div class="proj-title">DSA Scheduling AI Agent</div>
-        <div class="proj-desc">A live agent that polls partner booking sheets every ten minutes, ingests eligible leads into its own store, and drives outbound trial scheduling. A hard-coded write policy scopes it to agent-owned columns, and 60/60 tests gate every deploy.</div>
-        <div class="proj-stack"><span>Cloudflare Workers</span><span>D1</span><span>Google Sheets API</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-idx">06</div>
-        <div class="proj-title">Daily CS Quality Audit Agent</div>
-        <div class="proj-desc">Audits the previous day's tickets across four tracks — email, paid Slack, teacher chat, and live chat — scoring handling quality with Claude and publishing four Excel reports plus a Slack summary before the team starts its shift.</div>
-        <div class="proj-stack"><span>Python</span><span>Atlas API</span><span>Claude</span><span>Excel</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-idx">07</div>
-        <div class="proj-title">Lead Quality Feedback Loop</div>
-        <div class="proj-desc">A live agent that closes the loop between sales and marketing: it asks whoever claimed a lead to rate it 1–5 in Slack, then logs the score against its source. One parser covers three subject feeds, verified against 282 real alerts.</div>
-        <div class="proj-stack"><span>Cloudflare Workers</span><span>D1</span><span>Slack API</span><span>Sheets</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-idx">08</div>
-        <div class="proj-title">Ticket Taxonomy &amp; Routing Redesign</div>
-        <div class="proj-desc">Rebuilt the issue-category and priority taxonomy behind the helpdesk and paired it with a classify-first routing protocol, so tickets reach the right queue on arrival instead of being reassigned two hops later.</div>
-        <div class="proj-stack"><span>Taxonomy design</span><span>Classifier service</span><span>Routing playbooks</span></div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-idx">09</div>
-        <div class="proj-title">Incentive Automation Engine</div>
-        <div class="proj-desc">Turns the monthly payout cycle into a single run: pulls performance data from Airtable and Redash, applies the tiered retention and renewal formulas, and emits the payout workbook plus a Slack summary for sign-off.</div>
-        <div class="proj-stack"><span>Airtable</span><span>Redash</span><span>Python</span><span>Slack API</span></div>
       </div>
 
     </div>
