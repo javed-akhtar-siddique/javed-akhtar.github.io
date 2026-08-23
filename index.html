@@ -217,8 +217,10 @@
     }
 
     .hero-photo { position: relative; flex-shrink: 0; }
+    /* frame matches the source ratio (766x1028) so the portrait is never cropped */
     .hero-photo img {
-      width: 176px; height: 176px; border-radius: 14px; object-fit: cover;
+      width: 212px; aspect-ratio: 766 / 1028; height: auto;
+      border-radius: 14px; object-fit: cover; object-position: center top;
       border: 1px solid var(--border); box-shadow: var(--shadow); display: block;
     }
     .hero-photo::after {
@@ -397,7 +399,7 @@
       #hero { padding: 52px 0 56px; }
       .hero-grid { grid-template-columns: 1fr; gap: 30px; }
       .hero-photo { order: -1; }
-      .hero-photo img { width: 104px; height: 104px; }
+      .hero-photo img { width: 132px; }
       h1 { letter-spacing: -1.6px; }
       .stat-strip { grid-template-columns: 1fr; }
       .stat { border-right: none; border-bottom: 1px solid var(--border); }
